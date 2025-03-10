@@ -1,87 +1,55 @@
-### Facial Expression Recognition with YOLOv8
+# Real-Time Facial Expression Recognition with YOLOv8
 
-This project analyzes video footage to identify instances of facial expressions using YOLOv8. The system processes video frames in real-time, detecting faces and generating comprehensive statistics about detection accuracy and performance.
+A YOLOv8-based system for detecting facial expressions in video content. Provides real-time bounding box annotations and generates temporal statistics about emotional patterns.
 
-## Example Scenarios
+## Key Features
+- **6 Core Expression Classes**: Angry 😠, Happy 😄, Sad 😢, Surprise 😲, Fear 😨, Disgust 🤢
+- **Visual Annotations**: Real-time bounding boxes with expression labels and confidence scores
+- **Temporal Analysis**: Charts showing emotion distribution and confidence trends over time
+- **Performance Tracking**: FPS metrics and detection consistency reports
 
-### Scenario 1: Reaction to Provocative Questions
+## Example Results
 
-![Demo](statistics/demo_angry/messi_angry.gif)
+### Case Study 1: Angry Expression Analysis
+**Input Video**  
+![Angry Detection Demo](demo/demo_angry/messi_angry_with_detections.gif)
 
-When analyzing footage of interview subjects facing challenging questions, our system can:
+**Statistical Output**  
+![Angry Statistics](demo/demo_angry/demo_stats_angry.png)
+- *Left*: Dominant expression timeline visualization
+- *Middle*: Confidence score distribution across detections
+- *Right*: Total Facial Expression counts
 
-- Track facial movements and micro-expressions
-- Identify objects in the frame (microphones, recording equipment)
-- Measure subject positioning and movement patterns
+### Case Study 2: Happy Expression Analysis
+**Input Video**  
+![Happy Detection Demo](demo/demo_happy/messi_happy_with_detections.gif)
 
-![Demo](statistics/demo_angry/messi_angry_stats.jpeg)
-
-*Figure 1: Facial expression recognition statistics during provocative questioning*
-
-### Scenario 2: Positive Interaction Analysis
-
-![Demo](statistics/demo_happy/messi_happy.gif)
-
-For positive interactions, our system detects:
-
-- Subject's gestures and body language
-- Surrounding objects and their relation to the subject
-- Environmental factors affecting detection accuracy
-
-![Demo](statistics/demo_happy/messi_happy_stats.jpeg)
-
-*Figure 2: Facial expression recognitions statistics during positive questioning*
-
-## How It Works
-
-The project uses YOLOv8 (You Only Look Once) for real-time object detection, offering:
-
-- Fast processing speeds suitable for video analysis
-- High accuracy in identifying multiple object classes
-- Robust performance across varying lighting conditions
-
-## Running the Project
-
-You can run the project with different options to customize the analysis:
-
-```shellscript
-# Run with all detector backends and generate statistics
-python main.py --video your_video.mp4 --stats
-
-# Specify a custom directory for statistics
-python main.py --video your_video.mp4 --stats --stats-dir ./my_stats
-
-# Process a live camera feed instead of a video file
-python main.py --camera 0 --stats
-```
-
-## Statistics Generation
-
-The system automatically generates detailed statistics about the detection process, including:
-
-- Detection confidence scores
-- Facial expression distribution
-
-These statistics are saved as charts and data files in the specified output directory.
-
-## Requirements
-
-- Python 3.8+
-- OpenCV
-- PyTorch
-- Matplotlib (for statistics visualization)
-- YOLOv8
+**Statistical Output**  
+![Happy Statistics](demo/demo_happy/demo_stats_happy.png)
+- *Left*: Dominant expression timeline visualization
+- *Middle*: Confidence score distribution across detections
+- *Right*: Total Facial Expression counts
 
 ## Installation
 
-```shellscript
-# Clone the repository
-git clone https://github.com/yourusername/video-object-detection.git
-
-# Install dependencies
+```bash
+git clone https://github.com/yourusername/facial-expression-recognition.git
+cd facial-expression-recognition
 pip install -r requirements.txt
 ```
 
-## License
+## Usage
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+# Basic video analysis with webcam feed
+python main.py --camera 0
+
+# Process video file with statistics generation
+python main.py --video input.mp4 --stats
+
+# Save annotated output to specific path
+python main.py --video input.mp4 --output annotated_video.mp4
+
+# Use specific detector backend with custom stats directory
+python main.py --video input.mp4 --detector-backend yolov8 --stats --stats-dir ./analytics
+```
